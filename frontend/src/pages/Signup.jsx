@@ -15,28 +15,16 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-
-
     try {
       const res = await axios.post(
         `${serverUrl}/api/auth/signup`,
-        {
-          name,
-          email,
-          password,
-      
-        },
-        {
-          withCredentials: true,
-        }
+        { name, email, password,},
+        { withCredentials: true,  }
       );
-
       toast.success(
         res.data?.message || "Account created successfully 🎉"
       );
-
-      navigate("/");
+      navigate("/login");
     } catch (err) {
       toast.error(
         err.response?.data?.message || "Something went wrong"

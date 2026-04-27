@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { serverUrl } from "../src/App.jsx";
+import { Search } from "lucide-react";
 
 export default function SearchBox() {
   const [query, setQuery] = useState("");
@@ -9,7 +10,10 @@ export default function SearchBox() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (!query) return setResults([]);
+      if (!query.trim()) {
+        setResults([]);
+        return;
+      }
 
       fetchResults();
     }, 300);
@@ -19,6 +23,7 @@ export default function SearchBox() {
 
   const fetchResults = async () => {
     setLoading(true);
+
     try {
       const res = await axios.get(
         `${serverUrl}/api/search?q=${query}`
@@ -27,42 +32,74 @@ export default function SearchBox() {
     } catch (err) {
       console.error(err);
     }
+
     setLoading(false);
   };
 
   return (
-    <div style={{ width: "400px", margin: "50px auto" }}>
-      <input
-        type="text"
-        placeholder="Search products..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        style={{ width: "100%", padding: "10px" }}
-      />
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-950 flex justify-center items-start py-20 px-4">
+      <div className="w-full max-w-2xl">
+        
+        {/* Heading */}
+        <h1 className="text-4xl font-bold text-white text-center mb-8">
+          Search Products 🔍
+        </h1>
 
-      {loading && <p>Loading...</p>}
+        {/* Search Box */}
+        <div className="relative mb-6">
+          <Search
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+            size={20}
+          />
 
-      <div>
-        {results.map((item) => (
-          <div
-            key={item.document.id}
-            style={{
-              display: "flex",
-              gap: "10px",
-              margin: "10px 0",
-              borderBottom: "1px solid #ddd",
-            }}
-          >
-            <img
-              src={item.document.default_image}
-              width="50"
-            />
-            <div>
-              <p>{item.document.name}</p>
-              <small>Sales: {item.document.sales}</small>
-            </div>
+          <input
+            type="text"
+            placeholder="Search for products..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        {/* Loading */}
+        {loading && (
+          <div className="text-center text-gray-300 mb-4">
+            Loading...
           </div>
-        ))}
+        )}
+
+        {/* Results */}
+        <div className="space-y-4">
+          {results.map((item) => (
+            <div
+              key={item.document.id}
+              className="bg-white/10 backdrop-blur-lg border border-white/10 rounded-2xl p-4 flex gap-4 hover:scale-[1.02] transition duration-300"
+            >
+              <img
+                src={item.document.default_image}
+                alt={item.document.name}
+                className="w-20 h-20 object-cover rounded-xl"
+              />
+
+              <div className="flex-1">
+                <h2 className="text-white text-lg font-semibold">
+                  {item.document.name}
+                </h2>
+
+                <p className="text-gray-400 text-sm mt-1">
+                  Sales: {item.document.sales}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Empty State */}
+        {!loading && query && results.length === 0 && (
+          <div className="text-center text-gray-400 mt-8">
+            No products found 😕
+          </div>
+        )}
       </div>
     </div>
   );

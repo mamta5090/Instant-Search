@@ -18,11 +18,11 @@ export default function Home() {
         <div className="flex items-center gap-10">
           <h1 className="text-3xl font-bold">Instant-Search</h1>
           <div className="hidden md:flex gap-8 text-lg text-gray-300">
-            <a href="#">Products</a>
-            <a href="#">Solutions</a>
-            <a href="#">Pricing</a>
-            <a href="#">Developers</a>
-            <a href="#">Resources</a>
+            <a href="/search">Products</a>
+            <a href="/add">Add Products</a>
+           
+          
+            <a href="#">Logout</a>
           </div>
         </div>
 
