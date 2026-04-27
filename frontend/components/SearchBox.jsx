@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { serverUrl } from "../App.jsx";
+import { serverUrl } from "../src/App.jsx";
 
 export default function SearchBox() {
   const [query, setQuery] = useState("");

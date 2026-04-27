@@ -16,7 +16,7 @@ export default function Home() {
       {/* Navbar */}
       <nav className="flex items-center justify-between px-10 py-6">
         <div className="flex items-center gap-10">
-          <h1 className="text-3xl font-bold">algolia</h1>
+          <h1 className="text-3xl font-bold">Instant-Search</h1>
           <div className="hidden md:flex gap-8 text-lg text-gray-300">
             <a href="#">Products</a>
             <a href="#">Solutions</a>
