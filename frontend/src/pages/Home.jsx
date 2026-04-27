@@ -4,40 +4,24 @@ import { Search, ArrowRight } from 'lucide-react';
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#020B4A] text-white overflow-hidden">
-      {/* Top Banner */}
-      <div className="w-full text-center py-3 text-sm border-b border-white/10 bg-[#040f63]">
-        <span className="text-blue-400 font-medium">New Report</span>{' '}
-        AI trends in B2B ecommerce search 2026
-        <button className="ml-3 inline-flex items-center gap-2 text-white font-medium hover:text-blue-400 transition">
-          Learn more <ArrowRight size={16} />
-        </button>
-      </div>
+     
 
       {/* Navbar */}
       <nav className="flex items-center justify-between px-10 py-6">
         <div className="flex items-center gap-10">
-          <h1 className="text-3xl font-bold">algolia</h1>
+          <h1 className="text-3xl font-bold">Instant-Search</h1>
           <div className="hidden md:flex gap-8 text-lg text-gray-300">
-            <a href="#">Products</a>
-            <a href="#">Solutions</a>
-            <a href="#">Pricing</a>
-            <a href="#">Developers</a>
-            <a href="#">Resources</a>
+            <a href="/search">Products</a>
+            <a href="/add">Add Products</a>
+         
           </div>
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="hidden md:flex items-center bg-white/10 px-4 py-3 rounded-full w-72">
-            <Search size={18} className="text-gray-300" />
-            <input
-              type="text"
-              placeholder="Search Algolia"
-              className="bg-transparent outline-none px-3 w-full"
-            />
-          </div>
+        
 
           <button className="px-6 py-3 border border-white rounded-xl hover:bg-white hover:text-black transition">
-            Request demo
+        <a href="#">Logout</a>
           </button>
           <button className="px-6 py-3 bg-blue-600 rounded-xl hover:bg-blue-700 transition">
             Get started
