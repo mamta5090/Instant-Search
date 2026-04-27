@@ -15,45 +15,27 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-
-
     try {
       const res = await axios.post(
         `${serverUrl}/api/auth/signup`,
-        {
-          name,
-          email,
-          password,
-      
-        },
-        {
-          withCredentials: true,
-        }
+        { name, email, password },
+        { withCredentials: true },
       );
-
-      toast.success(
-        res.data?.message || "Account created successfully 🎉"
-      );
-
-      navigate("/");
+      toast.success(res.data?.message || "Account created successfully 🎉");
+      navigate("/login");
     } catch (err) {
-      toast.error(
-        err.response?.data?.message || "Something went wrong"
-      );
+      toast.error(err.response?.data?.message || "Something went wrong");
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800">
       <div className="bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl rounded-3xl p-8 w-full max-w-md text-white">
-        
         <h2 className="text-3xl font-bold text-center mb-6">
           Create Account 🚀
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-
           {/* Name */}
           <input
             type="text"
@@ -92,8 +74,6 @@ const Signup = () => {
               {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
             </div>
           </div>
-
-      
 
           {/* Submit */}
           <button
