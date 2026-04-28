@@ -1,4 +1,4 @@
-import SearchBox from "../../components/SearchBox.jsx";
+import SearchBox from "../components/SearchBox.jsx";
 export default function SearchPage() {
   return <SearchBox />;
 }

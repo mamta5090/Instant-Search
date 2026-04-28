@@ -1,84 +1,109 @@
 import React from 'react';
 import { Search, ArrowRight } from 'lucide-react';
+import home from '../assets/home.webp';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#020B4A] text-white overflow-hidden">
-     
+    <div className="relative min-h-screen overflow-hidden text-white">
+      {/* Background Image */}
+      <img
+        src={home}
+        alt="Home"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
 
-      {/* Navbar */}
-      <nav className="flex items-center justify-between px-10 py-6">
-        <div className="flex items-center gap-10">
-          <h1 className="text-3xl font-bold">Instant-Search</h1>
-          <div className="hidden md:flex gap-8 text-lg text-gray-300">
-            <a href="/search">Products</a>
-            <a href="/add">Add Products</a>
-         
-          </div>
-        </div>
+      {/* Dark Overlay for better text visibility */}
+      <div className="absolute inset-0 bg-black/45 backdrop-blur-[2px]" />
 
-        <div className="flex items-center gap-4">
-        
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
 
-          <button className="px-6 py-3 border border-white rounded-xl hover:bg-white hover:text-black transition">
-        <a href="#">Logout</a>
-          </button>
-          <button className="px-6 py-3 bg-blue-600 rounded-xl hover:bg-blue-700 transition">
-            Get started
-          </button>
-        </div>
-      </nav>
+      {/* Main Content */}
+      <div className="relative z-10 min-h-screen flex flex-col">
+        {/* Navbar */}
+        <nav className="flex items-center justify-between px-8 md:px-16 py-6">
+          <div className="flex items-center gap-12">
+            <h1 className="text-3xl font-bold tracking-wide">
+              Instant<span className="text-blue-400">Search</span>
+            </h1>
 
-      {/* Hero Section */}
-      <section className="grid md:grid-cols-2 items-center px-10 md:px-20 py-16 gap-10">
-        {/* Left Content */}
-        <div>
-          <h2 className="text-6xl md:text-8xl font-bold leading-tight">
-            Agentic.<br />
-            Generative.<br />
-            Search<span className="text-green-400">›_</span>
-          </h2>
-
-          <p className="text-xl text-gray-300 mt-8 max-w-lg">
-            One AI retrieval platform to power them all
-          </p>
-
-          <button className="mt-10 px-8 py-4 bg-blue-600 rounded-2xl text-lg font-semibold hover:bg-blue-700 transition">
-            Explore the platform
-          </button>
-        </div>
-
-        {/* Right Content */}
-        <div className="relative flex justify-center">
-          {/* Glow Background */}
-          <div className="absolute w-[500px] h-[500px] bg-blue-500/20 blur-3xl rounded-full"></div>
-
-          {/* Card UI */}
-          <div className="relative bg-gradient-to-br from-blue-900 to-purple-900 border border-cyan-400/30 rounded-[40px] p-8 w-[520px] shadow-2xl">
-            <h3 className="text-5xl font-light text-green-300 mb-8">
-              Generative ✨
-            </h3>
-
-            <div className="bg-white rounded-full px-6 py-4 text-black text-lg mb-6">
-              4 day family ski trip to Vermont 🎤
-            </div>
-
-            <div className="bg-blue-500 rounded-2xl p-5 text-sm leading-relaxed mb-6">
-              Here’s a 3-bed rental on Stowe Mountain with lift tickets included.
-              I know you like Mexican food so here’s a 5-star spot just a mile away.
-            </div>
-
-            <div className="grid grid-cols-3 gap-4">
-              {[1, 2, 3].map((item) => (
-                <div
-                  key={item}
-                  className="bg-white/10 rounded-2xl h-32 backdrop-blur-md"
-                />
-              ))}
+            <div className="hidden md:flex gap-8 text-lg text-gray-200">
+              <a href="/search" className="hover:text-blue-400 transition">
+                Products
+              </a>
+              <a href="/add" className="hover:text-blue-400 transition">
+                Add Products
+              </a>
             </div>
           </div>
-        </div>
-      </section>
+
+          <div className="flex items-center gap-4">
+            <button className="px-6 py-3 border border-white/40 rounded-xl hover:bg-white hover:text-black transition">
+              Logout
+            </button>
+
+            <button className="px-6 py-3 bg-blue-600 rounded-xl hover:bg-blue-700 transition shadow-lg">
+              Get Started
+            </button>
+          </div>
+        </nav>
+
+        {/* Hero Section */}
+        <section className="flex-1 grid md:grid-cols-2 items-center px-8 md:px-20 py-10 gap-10">
+          {/* Left Side */}
+          <div className="max-w-xl">
+            <p className="text-blue-300 uppercase tracking-[4px] mb-4">
+              AI Powered Search Platform
+            </p>
+
+            <h2 className="text-5xl md:text-7xl font-bold leading-tight">
+              Find Products <br />
+              Faster with <br />
+              Smart Search
+            </h2>
+
+            <p className="text-lg text-gray-300 mt-6 leading-relaxed">
+              Search smarter, discover faster. Experience real-time instant
+              results with AI-powered product discovery.
+            </p>
+
+            {/* Search Box */}
+            <div className="mt-8 flex items-center bg-white/15 backdrop-blur-xl border border-white/20 rounded-2xl p-2 max-w-lg shadow-xl">
+              <Search className="ml-4 text-gray-300" />
+              <input
+                type="text"
+                placeholder="Search products..."
+                className="flex-1 bg-transparent px-4 py-3 outline-none text-white placeholder-gray-300"
+              />
+              <button className="bg-blue-600 px-5 py-3 rounded-xl hover:bg-blue-700 transition">
+                <ArrowRight />
+              </button>
+            </div>
+          </div>
+
+          {/* Right Side Floating Card */}
+          <div className="flex justify-center md:justify-end">
+            <div className="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl p-8 w-[420px] shadow-2xl">
+              <h3 className="text-3xl font-semibold mb-6 text-blue-300">
+                Trending Searches 🔥
+              </h3>
+
+              <div className="space-y-4">
+                {['Sofa Set', 'Dining Table', 'Modern Lamp', 'Wooden Chair'].map(
+                  (item, index) => (
+                    <div
+                      key={index}
+                      className="p-4 bg-white/10 rounded-2xl hover:bg-white/20 transition cursor-pointer"
+                    >
+                      {item}
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
