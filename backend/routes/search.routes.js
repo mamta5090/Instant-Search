@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
         q: q || "*",
         query_by: "name,slug",
         prefix: true,
-        num_typos: 2,
+        num_typos: 1,
         prioritize_exact_match: true,
         sort_by: "_text_match:desc,sales:desc",
         per_page: 10,

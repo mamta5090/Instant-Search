@@ -1,0 +1,76 @@
+[
+  {
+    "id": "sofa_group",
+    "synonyms": ["sofa", "couch", "settee"]
+  },
+  {
+    "id": "chair_group",
+    "synonyms": ["chair", "seat", "armchair"]
+  },
+  {
+    "id": "stool_group",
+    "synonyms": ["stool", "bar stool", "high stool"]
+  },
+  {
+    "id": "table_group",
+    "synonyms": ["table", "desk", "side table", "coffee table"]
+  },
+  {
+    "id": "bed_group",
+    "synonyms": ["bed", "cot"]
+  },
+  {
+    "id": "painting_group",
+    "synonyms": ["painting", "artwork", "canvas", "wall art"]
+  },
+  {
+    "id": "abstract_group",
+    "synonyms": ["abstract", "modern art"]
+  },
+  {
+    "id": "lamp_group",
+    "synonyms": ["lamp"]
+  },
+  {
+    "id": "beige_group",
+    "synonyms": ["beige", "cream"]
+  },
+  {
+    "id": "gold_group",
+    "synonyms": ["gold", "golden"]
+  },
+  {
+    "id": "black_group",
+    "synonyms": ["black", "dark"]
+  },
+  {
+    "id": "blue_group",
+    "synonyms": ["blue", "navy"]
+  },
+  {
+    "id": "white_group",
+    "synonyms": ["white", "off white"]
+  },
+  {
+    "id": "velvet_group",
+    "synonyms": ["velvet", "soft fabric"]
+  },
+  {
+    "id": "leather_group",
+    "synonyms": ["leather", "faux leather", "vegan leather"]
+  },
+  {
+    "id": "fabric_group",
+    "synonyms": ["fabric", "cloth"]
+  },
+  {
+    "id": "seater_group",
+    "synonyms": ["3 seater", "three seater", "triple seat"],
+    "root": "3 seater"
+  },
+  {
+    "id": "two_seater_group",
+    "synonyms": ["2 seater", "two seater", "double seat"],
+    "root": "2 seater"
+  }
+]

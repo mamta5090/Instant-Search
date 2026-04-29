@@ -9,6 +9,9 @@ const __dirname = path.dirname(__filename);
 const dataPath = path.join(__dirname, "../data/products.json");
 const raw = fs.readFileSync(dataPath, "utf-8");
 const data = JSON.parse(raw);
+const synonymsPath = path.join(__dirname, "../data/synonyms.json");
+const synonymsRaw = fs.readFileSync(synonymsPath, "utf-8");
+const synonyms = JSON.parse(synonymsRaw);
 
 const schema = {
   name: "products",
@@ -31,6 +34,10 @@ async function run() {
   }
 
   await client.collections().create(schema);
+  // Add synonyms
+  for (const syn of synonyms) {
+    await client.collections("products").synonyms().upsert(syn.id, syn);
+  }
 
   const formatted = data.map((p) => ({
     id: String(p.legacy_id),
