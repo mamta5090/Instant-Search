@@ -33,9 +33,7 @@ export default function ProductForm() {
         "http://localhost:5020/api/v1/products/manual",
         form
       );
-
       setMessage(res.data.message);
-
       setForm({
         name: "",
         slug: "",
@@ -50,15 +48,12 @@ export default function ProductForm() {
   const handleUpload = async (e) => {
     e.preventDefault();
     setMessage("");
-
     if (!file) {
       setMessage("Please choose a JSON or CSV file");
       return;
     }
-
     const fd = new FormData();
     fd.append("file", file);
-
     try {
       const res = await axios.post(
         "http://localhost:5020/api/v1/products/import",
@@ -69,7 +64,6 @@ export default function ProductForm() {
           },
         }
       );
-
       setMessage(`${res.data.message} (${res.data.count} records)`);
       setFile(null);
     } catch (error) {

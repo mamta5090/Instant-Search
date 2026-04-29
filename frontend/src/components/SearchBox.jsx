@@ -83,6 +83,14 @@ export default function SearchBox() {
     item.toLowerCase().includes(query.toLowerCase())
   );
 
+  // const saveSearchTerm=async(term)=>{
+  //   try{
+  //     await axios.post(`${serverUrl}/api/history/save-history`,{term});
+  //   }catch(err){
+  //     console.error("Failed to save search history:",err);
+  //   }
+  // }
+
   return (
      <div className="min-h-screen bg-gradient-to-br from-[#553e2f] via-[#696660] to-[#79726a] py-20 px-4 relative">
         {/* <div className="min-h-screen bg-gray-200 py-20 px-4 relative"> */}

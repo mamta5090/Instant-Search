@@ -1,8 +1,37 @@
-import React from 'react';
-import { Search, ArrowRight } from 'lucide-react';
-import home from '../assets/home.webp';
+import React from "react";
+import { Search, ArrowRight } from "lucide-react";
+import home from "../assets/home.webp";
+import axios from "axios";
+import { serverUrl } from "../App.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(
+        `${serverUrl}/api/auth/logout`,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+
+      alert(res.data.message || "Logout successful");
+
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+      alert(error.response?.data?.message || "Logout failed");
+    }
+  };
+
   return (
     <div className="relative min-h-screen overflow-hidden text-white">
       {/* Background Image */}
@@ -12,7 +41,7 @@ export default function Home() {
         className="absolute inset-0 w-full h-full object-cover"
       />
 
-      {/* Dark Overlay for better text visibility */}
+      {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/45 backdrop-blur-[2px]" />
 
       {/* Gradient Overlay */}
@@ -38,7 +67,10 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-4">
-            <button className="px-6 py-3 border border-white/40 rounded-xl hover:bg-white hover:text-black transition">
+            <button
+              onClick={handleLogout}
+              className="px-6 py-3 border border-white/40 rounded-xl hover:bg-white hover:text-black transition"
+            >
               Logout
             </button>
 
@@ -70,18 +102,20 @@ export default function Home() {
             {/* Search Box */}
             <div className="mt-8 flex items-center bg-white/15 backdrop-blur-xl border border-white/20 rounded-2xl p-2 max-w-lg shadow-xl">
               <Search className="ml-4 text-gray-300" />
+
               <input
                 type="text"
                 placeholder="Search products..."
                 className="flex-1 bg-transparent px-4 py-3 outline-none text-white placeholder-gray-300"
               />
+
               <button className="bg-blue-600 px-5 py-3 rounded-xl hover:bg-blue-700 transition">
                 <ArrowRight />
               </button>
             </div>
           </div>
 
-          {/* Right Side Floating Card */}
+          {/* Right Side */}
           <div className="flex justify-center md:justify-end">
             <div className="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl p-8 w-[420px] shadow-2xl">
               <h3 className="text-3xl font-semibold mb-6 text-blue-300">
@@ -89,7 +123,7 @@ export default function Home() {
               </h3>
 
               <div className="space-y-4">
-                {['Sofa Set', 'Dining Table', 'Modern Lamp', 'Wooden Chair'].map(
+                {["Sofa Set", "Dining Table", "Modern Lamp", "Wooden Chair"].map(
                   (item, index) => (
                     <div
                       key={index}

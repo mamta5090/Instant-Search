@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import authRouter from "./routes/authRouter.js";
 import searchRouter from "./routes/search.routes.js";
+import searchHistoryRouter from "./routes/searchHistory.route.js";
 const app = express();
 
 app.use(
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRouter);
 app.use("/api/search", searchRouter);
+app.use("/api/history",searchHistoryRouter);
 
 const PORT = process.env.PORT || 5000;
 
