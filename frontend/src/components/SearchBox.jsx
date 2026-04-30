@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { serverUrl } from "../src/App.jsx";
-<<<<<<< HEAD:frontend/src/components/SearchBox.jsx
-=======
+import { serverUrl } from "../App.jsx";
 import { Search } from "lucide-react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
->>>>>>> 16899952d9456529073220bed34077793f6a3681:frontend/components/SearchBox.jsx
 
 export default function SearchBox() {
   const [query, setQuery] = useState("");
