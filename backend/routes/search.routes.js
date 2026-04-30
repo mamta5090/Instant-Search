@@ -1,5 +1,6 @@
 import express from "express";
 import { client } from "../config/typesense.js";
+import { importProduct, saveProduct } from "../controllers/searchHistory.controller.js";
 
 const router = express.Router();
 
@@ -26,4 +27,6 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post("/manual",saveProduct);
+router.post("/import",importProduct);
 export default router;

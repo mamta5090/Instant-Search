@@ -4,14 +4,18 @@ import { Upload, Package, FileUp } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import home from "../assets/home.webp";
+import { toast } from "react-toastify";
+import {serverUrl } from '../App.jsx'
+
 
 export default function ProductForm() {
   const [form, setForm] = useState({
-    name: "",
-    slug: "",
-    sales: "",
-    default_image: "",
-  });
+  legacy_id: "",
+  name: "",
+  slug: "",
+  sales: "",
+  default_image: "",
+});
 
   const navigate = useNavigate();
   const [file, setFile] = useState(null);
@@ -27,21 +31,28 @@ export default function ProductForm() {
   const handleManualSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
-
+const payload = {
+  ...form,
+  legacy_id: parseInt(form.legacy_id, 10),
+  sales: parseFloat(form.sales),
+};
     try {
       const res = await axios.post(
-        "http://localhost:5020/api/v1/products/manual",
-        form
+        `${serverUrl}/api/search/manual`,
+        payload
       );
       setMessage(res.data.message);
       setForm({
+        legacy_id: "",
         name: "",
         slug: "",
         sales: "",
         default_image: "",
       });
+      toast.success("Product saved successfully!");
     } catch (error) {
       setMessage(error.response?.data?.message || "Failed to save product");
+      console.log(error.response?.data?.message)
     }
   };
 
@@ -56,7 +67,7 @@ export default function ProductForm() {
     fd.append("file", file);
     try {
       const res = await axios.post(
-        "http://localhost:5020/api/v1/products/import",
+        `${serverUrl}/api/search/import`,
         fd,
         {
           headers: {
@@ -126,13 +137,20 @@ export default function ProductForm() {
                 onSubmit={handleManualSubmit}
                 className="space-y-5"
               >
-                <input
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  placeholder="Product Name"
-                  className="w-full bg-white/10 border border-white/20 rounded-2xl px-5 py-4 text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-blue-500"
-                />
+               <input
+  name="legacy_id"
+  value={form.legacy_id}
+  onChange={handleChange}
+  placeholder="Legacy ID"
+  className="w-full bg-white/10 border border-white/20 rounded-2xl px-5 py-4 text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-blue-500"
+/>
+<input
+  name="name"
+  value={form.name}
+  onChange={handleChange}
+  placeholder="Product Name"
+  className="w-full bg-white/10 border border-white/20 rounded-2xl px-5 py-4 text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-blue-500"
+/>
 
                 <input
                   name="slug"
